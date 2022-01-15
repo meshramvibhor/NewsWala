@@ -2,11 +2,16 @@ import React, { useEffect, useState } from 'react';
 import NewsItem from './NewsItem';
 import Spinner from './Spinner';
 import InfiniteScroll from "react-infinite-scroll-component";
+import PropTypes from 'prop-types'
+
 
 
 
 const News = (props) => {
 
+    const capitalize = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    } 
     const [articles, setArticles] = useState([])
     const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(1)
@@ -62,7 +67,7 @@ const News = (props) => {
 
     return (
         <>
-            <h1 className='text-center' style={{marginTop:'65px'}}>Top Headlines</h1>
+            <h1 className='text-center' style={{marginTop:'65px'}}>Top Headlines - {capitalize(props.category)}</h1>
 
             <InfiniteScroll
                 dataLength={articles.length}
@@ -91,6 +96,19 @@ const News = (props) => {
             </InfiniteScroll>
         </>
     )
+}
+
+
+News.defaultProps = {
+    country: 'in',
+    pageSize: 8,
+    category: 'general',
+}
+
+News.propTypes = {
+    country: PropTypes.string,
+    pageSize: PropTypes.number,
+    category: PropTypes.string,
 }
 
 export default News
