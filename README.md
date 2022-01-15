@@ -1,9 +1,11 @@
 # NewsWala - A news App
 
-## It will give daily news updates ![Screenshot (47)]
+## It will give daily news updates 
 
 ###HomePage
-(https://user-images.githubusercontent.com/80259000/149611798-e16dc082-9003-41c6-8e43-a9f5749cae2a.png)
+![Screenshot (47)](https://user-images.githubusercontent.com/80259000/149611894-a6d63283-eeea-45e8-91d7-1fa1b0bc521d.png)
+
+
 
 
 
