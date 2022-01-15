@@ -13,3 +13,5 @@ It will give daily news updates
 
 
 
+This app requires technologies - HTML, CSS, Javascript, React Js
+
