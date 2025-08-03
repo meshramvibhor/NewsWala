@@ -26,11 +26,10 @@ const News = (props) => {
         props.setProgress(60);
         let convData = await data.json();
         props.setProgress(80);
-console.log("data", convData)
         setArticles(convData.articles);
         setTotalResults(convData.totalResults);
         props.setProgress(100);
-    }, [props.apiKey, props.setProgress])
+    }, [props])
 
     useEffect(() => {
         updateNews();
