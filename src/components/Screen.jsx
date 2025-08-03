@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Search, TrendingUp, Globe, Smartphone, Heart, Briefcase, Trophy, Zap, Newspaper, Activity } from 'lucide-react';
 
 const newsCategories = [
@@ -25,7 +25,7 @@ const Screen = () => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  const fetchNews = async (category, pageNum = 1, append = false) => {
+  const fetchNews = useCallback(async (category, pageNum = 1, append = false) => {
     setLoading(true);
     try {
       // For "world" category, we'll use general category without country filter
@@ -62,13 +62,13 @@ const Screen = () => {
       }
     }
     setLoading(false);
-  };
+  }, [articles.length]);
 
   useEffect(() => {
     setPage(1);
     setHasMore(true);
     fetchNews(activeCategory, 1, false);
-  }, [activeCategory]);
+  }, [activeCategory, fetchNews]);
 
   const loadMore = () => {
     if (hasMore && !loading) {

@@ -25,7 +25,7 @@ const NewsItem=(props)=>{
                             {isDesc ? description : <span>{description}...</span>}
                         </p>
                         <p className="card-text"><small className="text-muted">by {author ? author : "unknown"} - published on {new Date(date).toGMTString()}</small></p>
-                        <a href={newsUrl} target="_blank" className="btn btn-outline-dark">Read More</a>
+                        <a href={newsUrl} target="_blank" rel="noreferrer" className="btn btn-outline-dark">Read More</a>
                     </div>
                 </div>
             </div>

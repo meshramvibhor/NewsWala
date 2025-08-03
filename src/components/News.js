@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import NewsItem from './NewsItem';
 import Spinner from './Spinner';
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -13,17 +13,15 @@ const News = (props) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     } 
     const [articles, setArticles] = useState([])
-    const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(1)
     const [totalResults, setTotalResults] = useState(0)
 
-    const updateNews = async () => {
+    const updateNews = useCallback(async () => {
         props.setProgress(0);
         
         // let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&pageSize=${props.pageSize}&category=${props.category}&apiKey=${props.apiKey}&page=${page}`;
         let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${props.apiKey}`;
         props.setProgress(25);
-        setLoading(true);
         let data = await fetch(url);
         props.setProgress(60);
         let convData = await data.json();
@@ -31,13 +29,12 @@ const News = (props) => {
 console.log("data", convData)
         setArticles(convData.articles);
         setTotalResults(convData.totalResults);
-        setLoading(false);
         props.setProgress(100);
-    }
+    }, [props.apiKey, props.setProgress])
 
     useEffect(() => {
         updateNews();
-    }, [])
+    }, [updateNews])
 
 
 
