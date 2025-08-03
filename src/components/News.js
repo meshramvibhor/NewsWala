@@ -55,11 +55,9 @@ console.log("data", convData)
        
         let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&pageSize=${props.pageSize}&category=${props.category}&apiKey=${props.apiKey}&page=${page+1}`;
         setPage(page + 1)
-        setLoading(true)
         let data = await fetch(url);
         let convData = await data.json();
         setArticles(articles.concat(convData.articles));
-        setLoading(false)
         setTotalResults(convData.totalResults)
     };
 
